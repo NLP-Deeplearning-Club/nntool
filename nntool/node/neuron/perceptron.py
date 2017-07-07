@@ -1,9 +1,9 @@
+"""
+感知器
+"""
 from nntool.abc.functionabc import FunctionABC
-def (y:'array',out:'array'):
-    """均方差损失函数,常用于nnl"""
-    n= len(y)
-    return square_loss(y,out)/n
-class MSE(FunctionABC):
+
+class Perceptron(FunctionABC):
 
     def __call__(self,In:'array')->float:
         self.out = self.W*In+self.b

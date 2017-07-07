@@ -1,9 +1,9 @@
 """
 感知器
 """
-from ..modelabc import ModelABC
+from nntool.abc.functionabc import FunctionABC
 
-class Perceptron(ModelABC):
+class Perceptron(FunctionABC):
 
     def __call__(self,In:'array')->float:
         self.out = self.W*In+self.b
@@ -12,5 +12,5 @@ class Perceptron(ModelABC):
         self.W = W
         self.b = b
 
-    def backpropagation(self):
+    def dx(self):
         pass

@@ -1,7 +1,7 @@
-from ..modelabc import ModelABC
+from nntool.abc.functionabc import FunctionABC
 from math import exp
 
-class Sigmoid(ModelABC):
+class Sigmoid(FunctionABC):
 
     def __call__(self,In:float)->float:
         self.out = 1/(1+exp(-In))
