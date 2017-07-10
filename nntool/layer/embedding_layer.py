@@ -61,11 +61,11 @@ class EmbeddingLayer(HiddenLayer):
         self.y = np.array([self.Theta[index] for index in self.indexs])
         return self.y
 
-    def backward(self, djdy):
+    def backward(self, djdy,eta):
         """计算本层输出"""
         _,djdTheta = self.d()
         self.djdTheta = djdTheta
-        return self.djdTheta
+        return self.djdTheta,eta
 
     def _update_Thetas(self,eta)
         self.Theta += -eta * self.djdTheta

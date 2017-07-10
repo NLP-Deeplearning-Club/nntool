@@ -26,9 +26,10 @@ class Sequential(ModelABC):
         """是否已经训练过"""
         return self._trained
 
-    def train(self,tranner):
+    def train(self,trainner):
         """计算模型的正向计算结果,并将其保存为self.y"""
-        tranner(self)
+        trainner(self)
+        trainner.train()
         self._trained = True
 
     def fit(self,dev:'matrix'):
@@ -36,7 +37,7 @@ class Sequential(ModelABC):
         if not self.trained:
             raise AttributeError("train the model first")
         else:
-            [ for i in self._layers]
-    @abstractmethod
+            pass
     def predict(x_test):
         """预测一组数据"""
+        pass

@@ -32,7 +32,7 @@ class LinearNeuronLayer(NeuronLayer):
         self.djdxs = np.array(djdxs)
         self._update_Thetas(eta)
 
-        return self.djdxs
+        return self.djdxs,eta
 
 
     def _update_Thetas(self,eta):

@@ -12,9 +12,7 @@ class LayerABC(ABC):
     def forward(self, x):
         """计算本层输出"""
 
-    @abstractproperty
-    def size(self):
-        """本层的输出纬度"""
+
 
 
 class HiddenLayer(LayerABC):
@@ -23,6 +21,10 @@ class HiddenLayer(LayerABC):
     def backward(self, x):
         """计算本层输出"""
         pass
+
+    @abstractproperty
+    def size(self):
+        """本层的输出纬度"""
 
 
 class NeuronLayer(HiddenLayer):
@@ -36,6 +38,7 @@ class NeuronLayer(HiddenLayer):
     def update_Theta(self, eta, djdTheta):
         """计算本层输出"""
         pass
+
 
 
 class ActivationFunctionLayer(HiddenLayer, FunctionABC):

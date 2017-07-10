@@ -1,6 +1,6 @@
 from nntool.abc.layerabc import LayerABC
 class InputLayer(LayerABC):
-    def forward(self)->'array':
+    def forward(self,z)->'array':
         self.y = self.x
         return self.y
 
