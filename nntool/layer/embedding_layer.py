@@ -3,13 +3,16 @@ from nntool.utils.init_factory import uniform_factory
 
 
 class EmbeddingLayer(HiddenLayer):
+    """嵌入层,这层一般来说是用作将稀疏的输入矩阵(onehot编码)转为稠密矩阵,同时降低维度
+    """
+
     x = None
     y = None
     djdys = None
     self.Theta = None
 
     def __call__(self,x):
-        """计算模型的正向计算结果,并将其保存为self.z"""
+        """计算模型的正向计算结果"""
         return self.forward(x)
 
     def __init__(self,Theta = None,*,size,init_factory=uniform_factory()):

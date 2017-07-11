@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod, abstractproperty
 
 class ModelABC(ABC):
-    """__init__中初始化超参数"""
+    """模型是由层组合而成的运算结构,神经网络中模型基本上就是花式堆叠层."""
     @abstractmethod
     def add(self,layer:'layer'):
         """添加一层"""

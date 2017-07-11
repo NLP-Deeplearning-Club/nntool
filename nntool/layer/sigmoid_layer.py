@@ -2,7 +2,10 @@ from nntool.abc.layerabc import ActivationFunctionLayer
 
 import numpy as np
 class SigmoidLayer(ActivationFunctionLayer):
-
+    """logistic激活函数层,作用是将线性层传入的内容映射到,
+    [0,1]区间,其两端平缓中间陡峭,因此在两端容易出现梯度消失的情况,
+    
+    """
     def forward(self,x:'array')->'array':
         """计算模型的正向计算结果,并将其保存为self.z"""
         self.x = x

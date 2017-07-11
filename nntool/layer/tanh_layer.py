@@ -4,7 +4,7 @@ import numpy as np
 class TanhLayer(ActivationFunctionLayer):
 
     def forward(self,x:'array')->'array':
-        """计算模型的正向计算结果,并将其保存为self.z"""
+        """值域在[-1,1]的激活函数"""
         self.x = x
         self.input_size = len(self.x)
 

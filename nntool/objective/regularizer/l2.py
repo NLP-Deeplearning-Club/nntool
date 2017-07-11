@@ -2,7 +2,7 @@ from nntool.abc.functionabc import FunctionABC
 
 
 class L2_Norm(FunctionABC):
-
+    """l2正则项,"""
     def __call__(Theta:'matrix')->float:
         n = Theta.shape[0]
         result = (self.lambd/(2*n))*((Theta**2).sum())

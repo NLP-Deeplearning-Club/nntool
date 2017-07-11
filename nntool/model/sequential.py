@@ -1,22 +1,11 @@
 from nntool.abc.modelabc import ModelABC
 
 class Sequential(ModelABC):
+
+    """序列模型,这个是keras中的概念,将模型理解为层的堆叠
+    """
     _layers = []
     _trained = False
-
-
-    def forward_propagation(self,z=None,n=0):
-        if n == 0:
-            new_z = self._layers[0]()
-        else:
-            new_z = self._layers[n]()
-
-        if n == len(self._layers):
-            return new_z
-        else:
-            new_n = n+1
-            return forward_propagation(new_z,new_n)
-
 
     def add(self,layer:'layer'):
         self._layers.append(layer)
@@ -27,13 +16,12 @@ class Sequential(ModelABC):
         return self._trained
 
     def train(self,trainner):
-        """计算模型的正向计算结果,并将其保存为self.y"""
+        """训练模型"""
         trainner(self)
-        trainner.train()
         self._trained = True
 
     def fit(self,dev:'matrix'):
-        """反向传播算法的结果"""
+        """测试在dev数据集上的效果"""
         if not self.trained:
             raise AttributeError("train the model first")
         else:
