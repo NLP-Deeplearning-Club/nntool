@@ -1,0 +1,134 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>nntool.abc.layerabc &#8212; nntool  documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for nntool.abc.layerabc</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="k">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span><span class="p">,</span> <span class="n">abstractproperty</span>
+<span class="kn">from</span> <span class="nn">nntool.abc.functionabc</span> <span class="k">import</span> <span class="n">FunctionABC</span>
+
+
+<div class="viewcode-block" id="LayerABC"><a class="viewcode-back" href="../../../nntool.abc.html#nntool.abc.layerabc.LayerABC">[docs]</a><span class="k">class</span> <span class="nc">LayerABC</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;层这是一个抽象概念,当多个结果要进行相同或者相关操作的时候,这就可以被看作是一层.</span>
+<span class="sd">    层也有特殊的地方,比如带有超参数的的就要设定超参数,有的有参数的就需要每次训练更新参数.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">djdys</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="LayerABC.forward"><a class="viewcode-back" href="../../../nntool.abc.html#nntool.abc.layerabc.LayerABC.forward">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;计算本层正向输出,&quot;&quot;&quot;</span></div>
+<div class="viewcode-block" id="LayerABC.backward"><a class="viewcode-back" href="../../../nntool.abc.html#nntool.abc.layerabc.LayerABC.backward">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;计算本层输出&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+
+
+
+
+<div class="viewcode-block" id="HiddenLayer"><a class="viewcode-back" href="../../../nntool.abc.html#nntool.abc.layerabc.HiddenLayer">[docs]</a><span class="k">class</span> <span class="nc">HiddenLayer</span><span class="p">(</span><span class="n">LayerABC</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;隐藏层是指除去输入输出的所有层&quot;&quot;&quot;</span>
+    <span class="nd">@abstractproperty</span>
+    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;本层的输出纬度&quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="NeuronLayer"><a class="viewcode-back" href="../../../nntool.abc.html#nntool.abc.layerabc.NeuronLayer">[docs]</a><span class="k">class</span> <span class="nc">NeuronLayer</span><span class="p">(</span><span class="n">HiddenLayer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;神经元层,表示本层都是神经元,</span>
+<span class="sd">    输入的每一个纬度都会进入层内的每个神经元进行计算,神经元一般都有参数,而训练这些参数也就是我们的任务&quot;&quot;&quot;</span>
+    <span class="n">_neurons</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">djdThetas</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">djdxs</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">input_size</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">Thetas</span> <span class="o">=</span> <span class="kc">None</span>
+<div class="viewcode-block" id="NeuronLayer.update_Theta"><a class="viewcode-back" href="../../../nntool.abc.html#nntool.abc.layerabc.NeuronLayer.update_Theta">[docs]</a>    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">update_Theta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">eta</span><span class="p">,</span> <span class="n">djdTheta</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;更新参数&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
+
+
+
+<div class="viewcode-block" id="ActivationFunctionLayer"><a class="viewcode-back" href="../../../nntool.abc.html#nntool.abc.layerabc.ActivationFunctionLayer">[docs]</a><span class="k">class</span> <span class="nc">ActivationFunctionLayer</span><span class="p">(</span><span class="n">HiddenLayer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;激活函数层一般只是将上一层传入的输入进行非线性变换,再输出其结果&quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, hsz.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

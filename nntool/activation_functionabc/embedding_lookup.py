@@ -28,4 +28,4 @@ class EmbeddingLookup(FunctionABC):
     def d(self,djdy):
         self.djdy = djdy
         self.djdTheta= self.d_Theta()
-        return (,self.djdTheta)
+        return None,self.djdTheta

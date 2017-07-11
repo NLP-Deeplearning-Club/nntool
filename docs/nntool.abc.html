@@ -1,0 +1,306 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>nntool.abc package &#8212; nntool  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="nntool.activation_functionabc package" href="nntool.activation_functionabc.html" />
+    <link rel="prev" title="nntool package" href="nntool.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="nntool-abc-package">
+<h1>nntool.abc package<a class="headerlink" href="#nntool-abc-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-nntool.abc.functionabc">
+<span id="nntool-abc-functionabc-module"></span><h2>nntool.abc.functionabc module<a class="headerlink" href="#module-nntool.abc.functionabc" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="nntool.abc.functionabc.ActivationFunctionABC">
+<em class="property">class </em><code class="descclassname">nntool.abc.functionabc.</code><code class="descname">ActivationFunctionABC</code><a class="reference internal" href="_modules/nntool/abc/functionabc.html#ActivationFunctionABC"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.abc.functionabc.ActivationFunctionABC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nntool.abc.functionabc.FunctionABC" title="nntool.abc.functionabc.FunctionABC"><code class="xref py py-class docutils literal"><span class="pre">nntool.abc.functionabc.FunctionABC</span></code></a></p>
+<p>激活函数一般是用来加入非线性因素的，因为线性模型的表达能力不够,一般接在线性层后面使用</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="nntool.abc.functionabc.FunctionABC">
+<em class="property">class </em><code class="descclassname">nntool.abc.functionabc.</code><code class="descname">FunctionABC</code><a class="reference internal" href="_modules/nntool/abc/functionabc.html#FunctionABC"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.abc.functionabc.FunctionABC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">abc.ABC</span></code></p>
+<p>神经网络中的函数多是进行矩阵计算,需要可以正向求出值,也需要可以逆向求出对x和对参数Theta的偏导</p>
+<dl class="method">
+<dt id="nntool.abc.functionabc.FunctionABC.d">
+<code class="descname">d</code><span class="sig-paren">(</span><em>djdy</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/abc/functionabc.html#FunctionABC.d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.abc.functionabc.FunctionABC.d" title="Permalink to this definition">¶</a></dt>
+<dd><p>对Theta和对x的偏导,有的可能没有其中某一项但这不重要</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="nntool.abc.functionabc.LossFuction">
+<em class="property">class </em><code class="descclassname">nntool.abc.functionabc.</code><code class="descname">LossFuction</code><a class="reference internal" href="_modules/nntool/abc/functionabc.html#LossFuction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.abc.functionabc.LossFuction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nntool.abc.functionabc.FunctionABC" title="nntool.abc.functionabc.FunctionABC"><code class="xref py py-class docutils literal"><span class="pre">nntool.abc.functionabc.FunctionABC</span></code></a></p>
+<p>损失函数,用于直观评价模型预计值与真实值间的差距,用于反向传播计算神经元参数</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="nntool.abc.functionabc.NormABC">
+<em class="property">class </em><code class="descclassname">nntool.abc.functionabc.</code><code class="descname">NormABC</code><a class="reference internal" href="_modules/nntool/abc/functionabc.html#NormABC"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.abc.functionabc.NormABC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nntool.abc.functionabc.FunctionABC" title="nntool.abc.functionabc.FunctionABC"><code class="xref py py-class docutils literal"><span class="pre">nntool.abc.functionabc.FunctionABC</span></code></a></p>
+<p>正则项函数,用于防止过拟合,正则化参数等价于对参数引入先验分布</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-nntool.abc.layerabc">
+<span id="nntool-abc-layerabc-module"></span><h2>nntool.abc.layerabc module<a class="headerlink" href="#module-nntool.abc.layerabc" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="nntool.abc.layerabc.ActivationFunctionLayer">
+<em class="property">class </em><code class="descclassname">nntool.abc.layerabc.</code><code class="descname">ActivationFunctionLayer</code><a class="reference internal" href="_modules/nntool/abc/layerabc.html#ActivationFunctionLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.abc.layerabc.ActivationFunctionLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nntool.abc.layerabc.HiddenLayer" title="nntool.abc.layerabc.HiddenLayer"><code class="xref py py-class docutils literal"><span class="pre">nntool.abc.layerabc.HiddenLayer</span></code></a></p>
+<p>激活函数层一般只是将上一层传入的输入进行非线性变换,再输出其结果</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="nntool.abc.layerabc.HiddenLayer">
+<em class="property">class </em><code class="descclassname">nntool.abc.layerabc.</code><code class="descname">HiddenLayer</code><a class="reference internal" href="_modules/nntool/abc/layerabc.html#HiddenLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.abc.layerabc.HiddenLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nntool.abc.layerabc.LayerABC" title="nntool.abc.layerabc.LayerABC"><code class="xref py py-class docutils literal"><span class="pre">nntool.abc.layerabc.LayerABC</span></code></a></p>
+<p>隐藏层是指除去输入输出的所有层</p>
+<dl class="attribute">
+<dt id="nntool.abc.layerabc.HiddenLayer.size">
+<code class="descname">size</code><a class="headerlink" href="#nntool.abc.layerabc.HiddenLayer.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>本层的输出纬度</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="nntool.abc.layerabc.LayerABC">
+<em class="property">class </em><code class="descclassname">nntool.abc.layerabc.</code><code class="descname">LayerABC</code><a class="reference internal" href="_modules/nntool/abc/layerabc.html#LayerABC"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.abc.layerabc.LayerABC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">abc.ABC</span></code></p>
+<p>层这是一个抽象概念,当多个结果要进行相同或者相关操作的时候,这就可以被看作是一层.
+层也有特殊的地方,比如带有超参数的的就要设定超参数,有的有参数的就需要每次训练更新参数.</p>
+<dl class="method">
+<dt id="nntool.abc.layerabc.LayerABC.backward">
+<code class="descname">backward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/abc/layerabc.html#LayerABC.backward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.abc.layerabc.LayerABC.backward" title="Permalink to this definition">¶</a></dt>
+<dd><p>计算本层输出</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nntool.abc.layerabc.LayerABC.djdys">
+<code class="descname">djdys</code><em class="property"> = None</em><a class="headerlink" href="#nntool.abc.layerabc.LayerABC.djdys" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nntool.abc.layerabc.LayerABC.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/abc/layerabc.html#LayerABC.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.abc.layerabc.LayerABC.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>计算本层正向输出,</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nntool.abc.layerabc.LayerABC.x">
+<code class="descname">x</code><em class="property"> = None</em><a class="headerlink" href="#nntool.abc.layerabc.LayerABC.x" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nntool.abc.layerabc.LayerABC.y">
+<code class="descname">y</code><em class="property"> = None</em><a class="headerlink" href="#nntool.abc.layerabc.LayerABC.y" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="nntool.abc.layerabc.NeuronLayer">
+<em class="property">class </em><code class="descclassname">nntool.abc.layerabc.</code><code class="descname">NeuronLayer</code><a class="reference internal" href="_modules/nntool/abc/layerabc.html#NeuronLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.abc.layerabc.NeuronLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nntool.abc.layerabc.HiddenLayer" title="nntool.abc.layerabc.HiddenLayer"><code class="xref py py-class docutils literal"><span class="pre">nntool.abc.layerabc.HiddenLayer</span></code></a></p>
+<p>神经元层,表示本层都是神经元,
+输入的每一个纬度都会进入层内的每个神经元进行计算,神经元一般都有参数,而训练这些参数也就是我们的任务</p>
+<dl class="attribute">
+<dt id="nntool.abc.layerabc.NeuronLayer.Thetas">
+<code class="descname">Thetas</code><em class="property"> = None</em><a class="headerlink" href="#nntool.abc.layerabc.NeuronLayer.Thetas" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nntool.abc.layerabc.NeuronLayer.djdThetas">
+<code class="descname">djdThetas</code><em class="property"> = None</em><a class="headerlink" href="#nntool.abc.layerabc.NeuronLayer.djdThetas" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nntool.abc.layerabc.NeuronLayer.djdxs">
+<code class="descname">djdxs</code><em class="property"> = None</em><a class="headerlink" href="#nntool.abc.layerabc.NeuronLayer.djdxs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nntool.abc.layerabc.NeuronLayer.input_size">
+<code class="descname">input_size</code><em class="property"> = None</em><a class="headerlink" href="#nntool.abc.layerabc.NeuronLayer.input_size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nntool.abc.layerabc.NeuronLayer.size">
+<code class="descname">size</code><em class="property"> = None</em><a class="headerlink" href="#nntool.abc.layerabc.NeuronLayer.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nntool.abc.layerabc.NeuronLayer.update_Theta">
+<code class="descname">update_Theta</code><span class="sig-paren">(</span><em>eta</em>, <em>djdTheta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/abc/layerabc.html#NeuronLayer.update_Theta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.abc.layerabc.NeuronLayer.update_Theta" title="Permalink to this definition">¶</a></dt>
+<dd><p>更新参数</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="nntool-abc-modelabc-module">
+<h2>nntool.abc.modelabc module<a class="headerlink" href="#nntool-abc-modelabc-module" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="module-nntool.abc.modelabc"></span><dl class="class">
+<dt id="nntool.abc.modelabc.ModelABC">
+<em class="property">class </em><code class="descclassname">nntool.abc.modelabc.</code><code class="descname">ModelABC</code><a class="reference internal" href="_modules/nntool/abc/modelabc.html#ModelABC"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.abc.modelabc.ModelABC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">abc.ABC</span></code></p>
+<p>模型是由层组合而成的运算结构,神经网络中模型基本上就是花式堆叠层.</p>
+<dl class="method">
+<dt id="nntool.abc.modelabc.ModelABC.add">
+<code class="descname">add</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/abc/modelabc.html#ModelABC.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.abc.modelabc.ModelABC.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>添加一层</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nntool.abc.modelabc.ModelABC.fit">
+<code class="descname">fit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/abc/modelabc.html#ModelABC.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.abc.modelabc.ModelABC.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>反向传播算法的结果</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nntool.abc.modelabc.ModelABC.predict">
+<code class="descname">predict</code><span class="sig-paren">(</span><em>x_test</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/abc/modelabc.html#ModelABC.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.abc.modelabc.ModelABC.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>预测一组数据</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nntool.abc.modelabc.ModelABC.train">
+<code class="descname">train</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/abc/modelabc.html#ModelABC.train"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.abc.modelabc.ModelABC.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>计算模型的正向计算结果,并将其保存为self.y</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nntool.abc.modelabc.ModelABC.trained">
+<code class="descname">trained</code><a class="headerlink" href="#nntool.abc.modelabc.ModelABC.trained" title="Permalink to this definition">¶</a></dt>
+<dd><p>是否已经训练过</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-nntool.abc.neuronabc">
+<span id="nntool-abc-neuronabc-module"></span><h2>nntool.abc.neuronabc module<a class="headerlink" href="#module-nntool.abc.neuronabc" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="nntool.abc.neuronabc.NeuronABC">
+<em class="property">class </em><code class="descclassname">nntool.abc.neuronabc.</code><code class="descname">NeuronABC</code><a class="reference internal" href="_modules/nntool/abc/neuronabc.html#NeuronABC"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.abc.neuronabc.NeuronABC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nntool.abc.functionabc.FunctionABC" title="nntool.abc.functionabc.FunctionABC"><code class="xref py py-class docutils literal"><span class="pre">nntool.abc.functionabc.FunctionABC</span></code></a></p>
+<p>神经元其实也是一个函数,神经网络算法本质上就是训练各个神经元的参数</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-nntool.abc">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-nntool.abc" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">nntool.abc package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-nntool.abc.functionabc">nntool.abc.functionabc module</a></li>
+<li><a class="reference internal" href="#module-nntool.abc.layerabc">nntool.abc.layerabc module</a></li>
+<li><a class="reference internal" href="#nntool-abc-modelabc-module">nntool.abc.modelabc module</a></li>
+<li><a class="reference internal" href="#module-nntool.abc.neuronabc">nntool.abc.neuronabc module</a></li>
+<li><a class="reference internal" href="#module-nntool.abc">Module contents</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">nntool</a><ul>
+  <li><a href="nntool.html">nntool package</a><ul>
+      <li>Previous: <a href="nntool.html" title="previous chapter">nntool package</a></li>
+      <li>Next: <a href="nntool.activation_functionabc.html" title="next chapter">nntool.activation_functionabc package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/nntool.abc.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, hsz.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/nntool.abc.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -24,4 +24,4 @@ class Tanh(FunctionABC):
     def d(self,djdy):
         self.djdy = djdy
         self.djdx = self.d_x()
-        return (self.djdx,)
+        return self.djdx,None
