@@ -45,7 +45,7 @@
 <div class="viewcode-block" id="ModelABC"><a class="viewcode-back" href="../../../nntool.abc.html#nntool.abc.modelabc.ModelABC">[docs]</a><span class="k">class</span> <span class="nc">ModelABC</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;模型是由层组合而成的运算结构,神经网络中模型基本上就是花式堆叠层.&quot;&quot;&quot;</span>
 <div class="viewcode-block" id="ModelABC.add"><a class="viewcode-back" href="../../../nntool.abc.html#nntool.abc.modelabc.ModelABC.add">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">layer</span><span class="p">:</span><span class="s1">&#39;layer&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">layer</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;添加一层&quot;&quot;&quot;</span></div>
     <span class="nd">@abstractproperty</span>
     <span class="k">def</span> <span class="nf">trained</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -56,7 +56,7 @@
         <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="ModelABC.fit"><a class="viewcode-back" href="../../../nntool.abc.html#nntool.abc.modelabc.ModelABC.fit">[docs]</a>    <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">dev</span><span class="p">:</span><span class="s1">&#39;matrix&#39;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">dev</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;反向传播算法的结果&quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 <div class="viewcode-block" id="ModelABC.predict"><a class="viewcode-back" href="../../../nntool.abc.html#nntool.abc.modelabc.ModelABC.predict">[docs]</a>    <span class="nd">@abstractmethod</span>

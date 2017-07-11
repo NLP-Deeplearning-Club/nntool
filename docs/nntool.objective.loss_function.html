@@ -46,23 +46,71 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="nntool-objective-loss-function-corss-entropy-module">
-<h2>nntool.objective.loss_function.corss_entropy module<a class="headerlink" href="#nntool-objective-loss-function-corss-entropy-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-nntool.objective.loss_function.corss_entropy">
+<span id="nntool-objective-loss-function-corss-entropy-module"></span><h2>nntool.objective.loss_function.corss_entropy module<a class="headerlink" href="#module-nntool.objective.loss_function.corss_entropy" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="nntool.objective.loss_function.corss_entropy.CrossEntropy">
+<em class="property">class </em><code class="descclassname">nntool.objective.loss_function.corss_entropy.</code><code class="descname">CrossEntropy</code><a class="reference internal" href="_modules/nntool/objective/loss_function/corss_entropy.html#CrossEntropy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.objective.loss_function.corss_entropy.CrossEntropy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="nntool.abc.html#nntool.abc.functionabc.FunctionABC" title="nntool.abc.functionabc.FunctionABC"><code class="xref py py-class docutils literal"><span class="pre">nntool.abc.functionabc.FunctionABC</span></code></a></p>
+<p>交叉熵损失函数,一般配合softmax一起使用</p>
+<dl class="method">
+<dt id="nntool.objective.loss_function.corss_entropy.CrossEntropy.backward">
+<code class="descname">backward</code><span class="sig-paren">(</span><em>eta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/objective/loss_function/corss_entropy.html#CrossEntropy.backward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.objective.loss_function.corss_entropy.CrossEntropy.backward" title="Permalink to this definition">¶</a></dt>
+<dd><p>交叉熵现在只和softmaxt配合使用</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nntool.objective.loss_function.corss_entropy.CrossEntropy.d">
+<code class="descname">d</code><span class="sig-paren">(</span><em>djdy</em>, <em>eta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/objective/loss_function/corss_entropy.html#CrossEntropy.d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.objective.loss_function.corss_entropy.CrossEntropy.d" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="nntool-objective-loss-function-hinge-module">
-<h2>nntool.objective.loss_function.hinge module<a class="headerlink" href="#nntool-objective-loss-function-hinge-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-nntool.objective.loss_function.hinge">
+<span id="nntool-objective-loss-function-hinge-module"></span><h2>nntool.objective.loss_function.hinge module<a class="headerlink" href="#module-nntool.objective.loss_function.hinge" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="nntool.objective.loss_function.hinge.hinge">
+<code class="descclassname">nntool.objective.loss_function.hinge.</code><code class="descname">hinge</code><span class="sig-paren">(</span><em>y</em>, <em>out</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/objective/loss_function/hinge.html#hinge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.objective.loss_function.hinge.hinge" title="Permalink to this definition">¶</a></dt>
+<dd><p>常用于最大化利润,常用在svm,需要与其输出为+-1</p>
+</dd></dl>
+
 </div>
-<div class="section" id="nntool-objective-loss-function-mle-module">
-<h2>nntool.objective.loss_function.mle module<a class="headerlink" href="#nntool-objective-loss-function-mle-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-nntool.objective.loss_function.mle">
+<span id="nntool-objective-loss-function-mle-module"></span><h2>nntool.objective.loss_function.mle module<a class="headerlink" href="#module-nntool.objective.loss_function.mle" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="nntool.objective.loss_function.mle.mle">
+<code class="descclassname">nntool.objective.loss_function.mle.</code><code class="descname">mle</code><span class="sig-paren">(</span><em>y</em>, <em>out</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/objective/loss_function/mle.html#mle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.objective.loss_function.mle.mle" title="Permalink to this definition">¶</a></dt>
+<dd><p>log对数损失函数,常见于logistic 回归,不实现</p>
+</dd></dl>
+
 </div>
-<div class="section" id="nntool-objective-loss-function-mse-module">
-<h2>nntool.objective.loss_function.mse module<a class="headerlink" href="#nntool-objective-loss-function-mse-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-nntool.objective.loss_function.mse">
+<span id="nntool-objective-loss-function-mse-module"></span><h2>nntool.objective.loss_function.mse module<a class="headerlink" href="#module-nntool.objective.loss_function.mse" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="nntool.objective.loss_function.mse.MSE">
+<em class="property">class </em><code class="descclassname">nntool.objective.loss_function.mse.</code><code class="descname">MSE</code><a class="reference internal" href="_modules/nntool/objective/loss_function/mse.html#MSE"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.objective.loss_function.mse.MSE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="nntool.abc.html#nntool.abc.functionabc.FunctionABC" title="nntool.abc.functionabc.FunctionABC"><code class="xref py py-class docutils literal"><span class="pre">nntool.abc.functionabc.FunctionABC</span></code></a></p>
+<p>均方差损失函数,常用于nnl</p>
+<dl class="method">
+<dt id="nntool.objective.loss_function.mse.MSE.dx">
+<code class="descname">dx</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/objective/loss_function/mse.html#MSE.dx"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.objective.loss_function.mse.MSE.dx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="nntool-objective-loss-function-square-loss-module">
-<h2>nntool.objective.loss_function.square_loss module<a class="headerlink" href="#nntool-objective-loss-function-square-loss-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-nntool.objective.loss_function.square_loss">
+<span id="nntool-objective-loss-function-square-loss-module"></span><h2>nntool.objective.loss_function.square_loss module<a class="headerlink" href="#module-nntool.objective.loss_function.square_loss" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="nntool.objective.loss_function.square_loss.square_loss">
+<code class="descclassname">nntool.objective.loss_function.square_loss.</code><code class="descname">square_loss</code><span class="sig-paren">(</span><em>y</em>, <em>out</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/objective/loss_function/square_loss.html#square_loss"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.objective.loss_function.square_loss.square_loss" title="Permalink to this definition">¶</a></dt>
+<dd><p>平方损失函数</p>
+</dd></dl>
+
 </div>
-<div class="section" id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-nntool.objective.loss_function">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-nntool.objective.loss_function" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -76,12 +124,12 @@
   <ul>
 <li><a class="reference internal" href="#">nntool.objective.loss_function package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#nntool-objective-loss-function-corss-entropy-module">nntool.objective.loss_function.corss_entropy module</a></li>
-<li><a class="reference internal" href="#nntool-objective-loss-function-hinge-module">nntool.objective.loss_function.hinge module</a></li>
-<li><a class="reference internal" href="#nntool-objective-loss-function-mle-module">nntool.objective.loss_function.mle module</a></li>
-<li><a class="reference internal" href="#nntool-objective-loss-function-mse-module">nntool.objective.loss_function.mse module</a></li>
-<li><a class="reference internal" href="#nntool-objective-loss-function-square-loss-module">nntool.objective.loss_function.square_loss module</a></li>
-<li><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li><a class="reference internal" href="#module-nntool.objective.loss_function.corss_entropy">nntool.objective.loss_function.corss_entropy module</a></li>
+<li><a class="reference internal" href="#module-nntool.objective.loss_function.hinge">nntool.objective.loss_function.hinge module</a></li>
+<li><a class="reference internal" href="#module-nntool.objective.loss_function.mle">nntool.objective.loss_function.mle module</a></li>
+<li><a class="reference internal" href="#module-nntool.objective.loss_function.mse">nntool.objective.loss_function.mse module</a></li>
+<li><a class="reference internal" href="#module-nntool.objective.loss_function.square_loss">nntool.objective.loss_function.square_loss module</a></li>
+<li><a class="reference internal" href="#module-nntool.objective.loss_function">Module contents</a></li>
 </ul>
 </li>
 </ul>

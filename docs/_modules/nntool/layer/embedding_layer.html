@@ -1,0 +1,163 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>nntool.layer.embedding_layer &#8212; nntool  documentation</title>
+    <link rel="stylesheet" href="../../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+   
+  <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for nntool.layer.embedding_layer</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">nntool.abc.layerabc</span> <span class="k">import</span> <span class="n">HiddenLayer</span>
+<span class="kn">from</span> <span class="nn">nntool.utils.init_factory</span> <span class="k">import</span> <span class="n">uniform_factory</span>
+
+
+<div class="viewcode-block" id="EmbeddingLayer"><a class="viewcode-back" href="../../../nntool.layer.html#nntool.layer.embedding_layer.EmbeddingLayer">[docs]</a><span class="k">class</span> <span class="nc">EmbeddingLayer</span><span class="p">(</span><span class="n">HiddenLayer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;嵌入层,这层一般来说是用作将稀疏的输入矩阵(onehot编码)转为稠密矩阵,同时降低维度</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">djdys</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">Theta</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;计算模型的正向计算结果&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">Theta</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span><span class="o">*</span><span class="p">,</span><span class="n">size</span><span class="p">,</span><span class="n">init_factory</span><span class="o">=</span><span class="n">uniform_factory</span><span class="p">()):</span>
+        <span class="sd">&quot;&quot;&quot;theta 必须是一个d*v维的矩阵,d为数据的输出纬度,v自己定,Theta是超参数&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">Theta</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Theta</span> <span class="o">=</span> <span class="n">Theta</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Theta</span><span class="o">.</span><span class="n">shape</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_init_factory</span> <span class="o">=</span> <span class="n">init_factory</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_size</span> <span class="o">=</span> <span class="n">size</span>
+
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;本层的输出纬度&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size</span>
+
+<div class="viewcode-block" id="EmbeddingLayer.d_Theta"><a class="viewcode-back" href="../../../nntool.layer.html#nntool.layer.embedding_layer.EmbeddingLayer.d_Theta">[docs]</a>    <span class="k">def</span> <span class="nf">d_Theta</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;对Theta的偏导</span>
+<span class="sd">        :math:`\\frac{\\partial y}{\\partial W[x,:]} = \\frac{\\partial J}{\\partial y}`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">djdw</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Theta</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span><span class="n">djdy</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">indexs</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">djdys</span><span class="p">):</span>
+            <span class="n">djdw</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">djdy</span>
+        <span class="k">return</span> <span class="n">djdw</span></div>
+
+<div class="viewcode-block" id="EmbeddingLayer.d_x"><a class="viewcode-back" href="../../../nntool.layer.html#nntool.layer.embedding_layer.EmbeddingLayer.d_x">[docs]</a>    <span class="k">def</span> <span class="nf">d_x</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;对x的偏导&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span></div>
+
+<div class="viewcode-block" id="EmbeddingLayer.d"><a class="viewcode-back" href="../../../nntool.layer.html#nntool.layer.embedding_layer.EmbeddingLayer.d">[docs]</a>    <span class="k">def</span> <span class="nf">d</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">djdy</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">djdys</span><span class="o">=</span> <span class="n">djdys</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">djdTheta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_Theta</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">djdTheta</span></div>
+
+<div class="viewcode-block" id="EmbeddingLayer.forward"><a class="viewcode-back" href="../../../nntool.layer.html#nntool.layer.embedding_layer.EmbeddingLayer.forward">[docs]</a>    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;计算本层输出</span>
+<span class="sd">        :math:`y=ebl(x)=W[x,:] w  \\in R^{|v|*d}`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">one_hot_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">Theta</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">one_hot_len</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;embeding must have the same input_size with the matrix&#39;s row&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Theta</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_init_factory</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_size</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Theta</span><span class="o">.</span><span class="n">shape</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">indexs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">i</span><span class="o">==</span> <span class="kc">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">Theta</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">indexs</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span></div>
+
+<div class="viewcode-block" id="EmbeddingLayer.backward"><a class="viewcode-back" href="../../../nntool.layer.html#nntool.layer.embedding_layer.EmbeddingLayer.backward">[docs]</a>    <span class="k">def</span> <span class="nf">backward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">djdy</span><span class="p">,</span><span class="n">eta</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;计算本层输出&quot;&quot;&quot;</span>
+        <span class="n">_</span><span class="p">,</span><span class="n">djdTheta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">d</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">djdTheta</span> <span class="o">=</span> <span class="n">djdTheta</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">djdTheta</span><span class="p">,</span><span class="n">eta</span></div>
+
+    <span class="k">def</span> <span class="nf">_update_Thetas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">eta</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Theta</span> <span class="o">+=</span> <span class="o">-</span><span class="n">eta</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">djdTheta</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../../index.html">Documentation overview</a><ul>
+  <li><a href="../../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, hsz.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

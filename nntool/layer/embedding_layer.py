@@ -9,7 +9,7 @@ class EmbeddingLayer(HiddenLayer):
     x = None
     y = None
     djdys = None
-    self.Theta = None
+    Theta = None
 
     def __call__(self,x):
         """计算模型的正向计算结果"""
@@ -34,23 +34,27 @@ class EmbeddingLayer(HiddenLayer):
         return self._size
 
     def d_Theta(self):
-        """对Theta的偏导"""
+        """对Theta的偏导
+        :math:`\\frac{\\partial y}{\\partial W[x,:]} = \\frac{\\partial J}{\\partial y}`
+        """
         djdw = np.zeros_like(self.Theta)
         for index,djdy in zip(self.indexs,self.djdys):
             djdw[index] = self.djdy
         return djdw
 
     def d_x(self):
-        """对Theta的偏导"""
+        """对x的偏导"""
         return NotImplemented
 
     def d(self,djdy):
         self.djdys= djdys
         self.djdTheta = self.d_Theta()
-        return (,self.djdTheta)
+        return None,self.djdTheta
 
-    def forward(self, x:"one hot array's matrix")->'array':
-        """计算本层输出"""
+    def forward(self, x):
+        """计算本层输出
+        :math:`y=ebl(x)=W[x,:] w  \\in R^{|v|*d}`
+        """
         self.x = x
         self.input_size = len(x)
         one_hot_len = len(self.x[0])
@@ -70,5 +74,5 @@ class EmbeddingLayer(HiddenLayer):
         self.djdTheta = djdTheta
         return self.djdTheta,eta
 
-    def _update_Thetas(self,eta)
+    def _update_Thetas(self,eta):
         self.Theta += -eta * self.djdTheta

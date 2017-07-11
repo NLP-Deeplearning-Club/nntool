@@ -46,11 +46,42 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="nntool-neuron-linear-neuron-module">
-<h2>nntool.neuron.linear_neuron module<a class="headerlink" href="#nntool-neuron-linear-neuron-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-nntool.neuron.linear_neuron">
+<span id="nntool-neuron-linear-neuron-module"></span><h2>nntool.neuron.linear_neuron module<a class="headerlink" href="#module-nntool.neuron.linear_neuron" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="nntool.neuron.linear_neuron.LinearNeuron">
+<em class="property">class </em><code class="descclassname">nntool.neuron.linear_neuron.</code><code class="descname">LinearNeuron</code><span class="sig-paren">(</span><em>Theta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/neuron/linear_neuron.html#LinearNeuron"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.neuron.linear_neuron.LinearNeuron" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="nntool.abc.html#nntool.abc.neuronabc.NeuronABC" title="nntool.abc.neuronabc.NeuronABC"><code class="xref py py-class docutils literal"><span class="pre">nntool.abc.neuronabc.NeuronABC</span></code></a></p>
+<p>线性神经元,也就是感知器,也就是W*X+b,w为对应输入的权重,b为偏置.</p>
+<dl class="method">
+<dt id="nntool.neuron.linear_neuron.LinearNeuron.d">
+<code class="descname">d</code><span class="sig-paren">(</span><em>djdy</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/neuron/linear_neuron.html#LinearNeuron.d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.neuron.linear_neuron.LinearNeuron.d" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nntool.neuron.linear_neuron.LinearNeuron.d_Theta">
+<code class="descname">d_Theta</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/neuron/linear_neuron.html#LinearNeuron.d_Theta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.neuron.linear_neuron.LinearNeuron.d_Theta" title="Permalink to this definition">¶</a></dt>
+<dd><p>对Theta的偏导
+<span class="math">\(\frac{\partial J}{\partial W} = \frac{\partial J}{\partial y}\)</span></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nntool.neuron.linear_neuron.LinearNeuron.d_x">
+<code class="descname">d_x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/neuron/linear_neuron.html#LinearNeuron.d_x"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.neuron.linear_neuron.LinearNeuron.d_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>对Theta的偏导:
+<span class="math">\(\frac{\partial J}{\partial x} = \frac{\partial J}{\partial y} W^T\)</span></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nntool.neuron.linear_neuron.LinearNeuron.update_Theta">
+<code class="descname">update_Theta</code><span class="sig-paren">(</span><em>new_Theta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/neuron/linear_neuron.html#LinearNeuron.update_Theta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.neuron.linear_neuron.LinearNeuron.update_Theta" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-nntool.neuron">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-nntool.neuron" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -64,8 +95,8 @@
   <ul>
 <li><a class="reference internal" href="#">nntool.neuron package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#nntool-neuron-linear-neuron-module">nntool.neuron.linear_neuron module</a></li>
-<li><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li><a class="reference internal" href="#module-nntool.neuron.linear_neuron">nntool.neuron.linear_neuron module</a></li>
+<li><a class="reference internal" href="#module-nntool.neuron">Module contents</a></li>
 </ul>
 </li>
 </ul>

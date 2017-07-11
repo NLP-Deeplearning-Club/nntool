@@ -4,7 +4,7 @@ from nntool.utils.init_factory import uniform_factory
 import numpy as np
 class LinearNeuronLayer(NeuronLayer):
     """线性神经元层,也可以说是全连接层"""
-    def forward(self,x:'array')->'array':
+    def forward(self,x):
         self.x = x
         self.input_size = len(self.x)
 
@@ -19,7 +19,7 @@ class LinearNeuronLayer(NeuronLayer):
         self.y=np.array(result)
         return self.y
 
-    def backward(self,djdys:'array',eta)->'djdTheta':
+    def backward(self,djdys,eta):
         self.djdys = djdys
         djdThetas = []
         djdxs = []
@@ -44,7 +44,7 @@ class LinearNeuronLayer(NeuronLayer):
 
 
 
-    def __init__(self,size:int,init_factory=uniform_factory()):
+    def __init__(self,size,init_factory=uniform_factory()):
         self._size=size
         self._init_factory = init_factory
 

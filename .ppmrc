@@ -1,0 +1,19 @@
+[project]
+project_name = nntool
+license = MIT
+keywords = ['math', 'nn', 'ml', 'dl']
+version = 0.0.1
+description = simple tools
+url = https://github.com/NLP-Deeplearning-Club/nntool
+
+[author]
+author = hsz
+author_email = hsz1273327@gmail.com
+
+[form]
+form = model
+
+[env]
+env = venv
+compiler = python
+

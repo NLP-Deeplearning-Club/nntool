@@ -46,23 +46,210 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="nntool-layer-embedding-layer-module">
-<h2>nntool.layer.embedding_layer module<a class="headerlink" href="#nntool-layer-embedding-layer-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-nntool.layer.embedding_layer">
+<span id="nntool-layer-embedding-layer-module"></span><h2>nntool.layer.embedding_layer module<a class="headerlink" href="#module-nntool.layer.embedding_layer" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="nntool.layer.embedding_layer.EmbeddingLayer">
+<em class="property">class </em><code class="descclassname">nntool.layer.embedding_layer.</code><code class="descname">EmbeddingLayer</code><span class="sig-paren">(</span><em>Theta=None</em>, <em>*</em>, <em>size</em>, <em>init_factory=&lt;function uniform_factory.&lt;locals&gt;._warp&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/layer/embedding_layer.html#EmbeddingLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.layer.embedding_layer.EmbeddingLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="nntool.abc.html#nntool.abc.layerabc.HiddenLayer" title="nntool.abc.layerabc.HiddenLayer"><code class="xref py py-class docutils literal"><span class="pre">nntool.abc.layerabc.HiddenLayer</span></code></a></p>
+<p>嵌入层,这层一般来说是用作将稀疏的输入矩阵(onehot编码)转为稠密矩阵,同时降低维度</p>
+<dl class="attribute">
+<dt id="nntool.layer.embedding_layer.EmbeddingLayer.Theta">
+<code class="descname">Theta</code><em class="property"> = None</em><a class="headerlink" href="#nntool.layer.embedding_layer.EmbeddingLayer.Theta" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nntool.layer.embedding_layer.EmbeddingLayer.backward">
+<code class="descname">backward</code><span class="sig-paren">(</span><em>djdy</em>, <em>eta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/layer/embedding_layer.html#EmbeddingLayer.backward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.layer.embedding_layer.EmbeddingLayer.backward" title="Permalink to this definition">¶</a></dt>
+<dd><p>计算本层输出</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nntool.layer.embedding_layer.EmbeddingLayer.d">
+<code class="descname">d</code><span class="sig-paren">(</span><em>djdy</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/layer/embedding_layer.html#EmbeddingLayer.d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.layer.embedding_layer.EmbeddingLayer.d" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nntool.layer.embedding_layer.EmbeddingLayer.d_Theta">
+<code class="descname">d_Theta</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/layer/embedding_layer.html#EmbeddingLayer.d_Theta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.layer.embedding_layer.EmbeddingLayer.d_Theta" title="Permalink to this definition">¶</a></dt>
+<dd><p>对Theta的偏导
+<span class="math">\(\frac{\partial y}{\partial W[x,:]} = \frac{\partial J}{\partial y}\)</span></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nntool.layer.embedding_layer.EmbeddingLayer.d_x">
+<code class="descname">d_x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/layer/embedding_layer.html#EmbeddingLayer.d_x"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.layer.embedding_layer.EmbeddingLayer.d_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>对x的偏导</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nntool.layer.embedding_layer.EmbeddingLayer.djdys">
+<code class="descname">djdys</code><em class="property"> = None</em><a class="headerlink" href="#nntool.layer.embedding_layer.EmbeddingLayer.djdys" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nntool.layer.embedding_layer.EmbeddingLayer.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/layer/embedding_layer.html#EmbeddingLayer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.layer.embedding_layer.EmbeddingLayer.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>计算本层输出
+<span class="math">\(y=ebl(x)=W[x,:] w  \in R^{|v|*d}\)</span></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nntool.layer.embedding_layer.EmbeddingLayer.size">
+<code class="descname">size</code><a class="headerlink" href="#nntool.layer.embedding_layer.EmbeddingLayer.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>本层的输出纬度</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nntool.layer.embedding_layer.EmbeddingLayer.x">
+<code class="descname">x</code><em class="property"> = None</em><a class="headerlink" href="#nntool.layer.embedding_layer.EmbeddingLayer.x" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nntool.layer.embedding_layer.EmbeddingLayer.y">
+<code class="descname">y</code><em class="property"> = None</em><a class="headerlink" href="#nntool.layer.embedding_layer.EmbeddingLayer.y" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="nntool-layer-linear-layer-module">
-<h2>nntool.layer.linear_layer module<a class="headerlink" href="#nntool-layer-linear-layer-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-nntool.layer.linear_layer">
+<span id="nntool-layer-linear-layer-module"></span><h2>nntool.layer.linear_layer module<a class="headerlink" href="#module-nntool.layer.linear_layer" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="nntool.layer.linear_layer.LinearNeuronLayer">
+<em class="property">class </em><code class="descclassname">nntool.layer.linear_layer.</code><code class="descname">LinearNeuronLayer</code><span class="sig-paren">(</span><em>size</em>, <em>init_factory=&lt;function uniform_factory.&lt;locals&gt;._warp&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/layer/linear_layer.html#LinearNeuronLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.layer.linear_layer.LinearNeuronLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="nntool.abc.html#nntool.abc.layerabc.NeuronLayer" title="nntool.abc.layerabc.NeuronLayer"><code class="xref py py-class docutils literal"><span class="pre">nntool.abc.layerabc.NeuronLayer</span></code></a></p>
+<p>线性神经元层,也可以说是全连接层</p>
+<dl class="method">
+<dt id="nntool.layer.linear_layer.LinearNeuronLayer.backward">
+<code class="descname">backward</code><span class="sig-paren">(</span><em>djdys</em>, <em>eta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/layer/linear_layer.html#LinearNeuronLayer.backward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.layer.linear_layer.LinearNeuronLayer.backward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nntool.layer.linear_layer.LinearNeuronLayer.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/layer/linear_layer.html#LinearNeuronLayer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.layer.linear_layer.LinearNeuronLayer.forward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="nntool.layer.linear_layer.LinearNeuronLayer.size">
+<code class="descname">size</code><a class="headerlink" href="#nntool.layer.linear_layer.LinearNeuronLayer.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>本层的纬度</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nntool.layer.linear_layer.LinearNeuronLayer.update_Theta">
+<code class="descname">update_Theta</code><span class="sig-paren">(</span><em>eta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/layer/linear_layer.html#LinearNeuronLayer.update_Theta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.layer.linear_layer.LinearNeuronLayer.update_Theta" title="Permalink to this definition">¶</a></dt>
+<dd><p>计算本层输出</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="nntool-layer-sigmoid-layer-module">
-<h2>nntool.layer.sigmoid_layer module<a class="headerlink" href="#nntool-layer-sigmoid-layer-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-nntool.layer.sigmoid_layer">
+<span id="nntool-layer-sigmoid-layer-module"></span><h2>nntool.layer.sigmoid_layer module<a class="headerlink" href="#module-nntool.layer.sigmoid_layer" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="nntool.layer.sigmoid_layer.SigmoidLayer">
+<em class="property">class </em><code class="descclassname">nntool.layer.sigmoid_layer.</code><code class="descname">SigmoidLayer</code><a class="reference internal" href="_modules/nntool/layer/sigmoid_layer.html#SigmoidLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.layer.sigmoid_layer.SigmoidLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="nntool.abc.html#nntool.abc.layerabc.ActivationFunctionLayer" title="nntool.abc.layerabc.ActivationFunctionLayer"><code class="xref py py-class docutils literal"><span class="pre">nntool.abc.layerabc.ActivationFunctionLayer</span></code></a></p>
+<p>logistic激活函数层,作用是将线性层传入的内容映射到,
+[0,1]区间,其两端平缓中间陡峭,因此在两端容易出现梯度消失的情况,
+Sigmoid的用途一般可以归结为:
+做概率
+做开关
+做”挤压”</p>
+<dl class="method">
+<dt id="nntool.layer.sigmoid_layer.SigmoidLayer.backward">
+<code class="descname">backward</code><span class="sig-paren">(</span><em>djdys</em>, <em>eta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/layer/sigmoid_layer.html#SigmoidLayer.backward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.layer.sigmoid_layer.SigmoidLayer.backward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nntool.layer.sigmoid_layer.SigmoidLayer.d_x">
+<code class="descname">d_x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/layer/sigmoid_layer.html#SigmoidLayer.d_x"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.layer.sigmoid_layer.SigmoidLayer.d_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>对x的偏导
+<span class="math">\(\frac{\partial y}{\partial x} = y(1-y)\)</span></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nntool.layer.sigmoid_layer.SigmoidLayer.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/layer/sigmoid_layer.html#SigmoidLayer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.layer.sigmoid_layer.SigmoidLayer.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>计算模型的正向计算结果
+<span class="math">\(\sigma(x)=\frac 1 {1+e^{-x}}\)</span></p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="nntool-layer-softmax-layer-module">
-<h2>nntool.layer.softmax_layer module<a class="headerlink" href="#nntool-layer-softmax-layer-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-nntool.layer.softmax_layer">
+<span id="nntool-layer-softmax-layer-module"></span><h2>nntool.layer.softmax_layer module<a class="headerlink" href="#module-nntool.layer.softmax_layer" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="nntool.layer.softmax_layer.SoftmaxLayer">
+<em class="property">class </em><code class="descclassname">nntool.layer.softmax_layer.</code><code class="descname">SoftmaxLayer</code><a class="reference internal" href="_modules/nntool/layer/softmax_layer.html#SoftmaxLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.layer.softmax_layer.SoftmaxLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="nntool.abc.html#nntool.abc.layerabc.ActivationFunctionLayer" title="nntool.abc.layerabc.ActivationFunctionLayer"><code class="xref py py-class docutils literal"><span class="pre">nntool.abc.layerabc.ActivationFunctionLayer</span></code></a></p>
+<p>softmax函数用于将输入的向量转换为每项值域在[0.1]且各项相加和为1的与输入向量等长的向量.
+这个向量可以作为多值分类的各位对应的值的可能性.</p>
+<dl class="method">
+<dt id="nntool.layer.softmax_layer.SoftmaxLayer.backward">
+<code class="descname">backward</code><span class="sig-paren">(</span><em>djdys</em>, <em>eta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/layer/softmax_layer.html#SoftmaxLayer.backward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.layer.softmax_layer.SoftmaxLayer.backward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nntool.layer.softmax_layer.SoftmaxLayer.d">
+<code class="descname">d</code><span class="sig-paren">(</span><em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/layer/softmax_layer.html#SoftmaxLayer.d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.layer.softmax_layer.SoftmaxLayer.d" title="Permalink to this definition">¶</a></dt>
+<dd><p><span class="math">\(\frac{\partial y_i}{\partial x_i} = y_i(1-y_i);\frac{\partial y_i}{\partial x_j} = - y_iy_j\)</span></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nntool.layer.softmax_layer.SoftmaxLayer.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/layer/softmax_layer.html#SoftmaxLayer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.layer.softmax_layer.SoftmaxLayer.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>计算模型的正向计算结果,并将其保存为
+<span class="math">\(softmax(x)_j=\frac {e^xj} {\sum_{i=1}^d e^{x_i}}\)</span></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nntool.layer.softmax_layer.SoftmaxLayer.size">
+<code class="descname">size</code><a class="headerlink" href="#nntool.layer.softmax_layer.SoftmaxLayer.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>本层的输出纬度</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="nntool-layer-tanh-layer-module">
-<h2>nntool.layer.tanh_layer module<a class="headerlink" href="#nntool-layer-tanh-layer-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-nntool.layer.tanh_layer">
+<span id="nntool-layer-tanh-layer-module"></span><h2>nntool.layer.tanh_layer module<a class="headerlink" href="#module-nntool.layer.tanh_layer" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="nntool.layer.tanh_layer.TanhLayer">
+<em class="property">class </em><code class="descclassname">nntool.layer.tanh_layer.</code><code class="descname">TanhLayer</code><a class="reference internal" href="_modules/nntool/layer/tanh_layer.html#TanhLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.layer.tanh_layer.TanhLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="nntool.abc.html#nntool.abc.layerabc.ActivationFunctionLayer" title="nntool.abc.layerabc.ActivationFunctionLayer"><code class="xref py py-class docutils literal"><span class="pre">nntool.abc.layerabc.ActivationFunctionLayer</span></code></a></p>
+<p>双曲正弦函数,值域在[-1,1]的激活函数,形状与sigmoid函数类似,一般用于做挤压</p>
+<dl class="method">
+<dt id="nntool.layer.tanh_layer.TanhLayer.backward">
+<code class="descname">backward</code><span class="sig-paren">(</span><em>djdys</em>, <em>eta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/layer/tanh_layer.html#TanhLayer.backward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.layer.tanh_layer.TanhLayer.backward" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nntool.layer.tanh_layer.TanhLayer.d">
+<code class="descname">d</code><span class="sig-paren">(</span><em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/layer/tanh_layer.html#TanhLayer.d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.layer.tanh_layer.TanhLayer.d" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="nntool.layer.tanh_layer.TanhLayer.d_x">
+<code class="descname">d_x</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/layer/tanh_layer.html#TanhLayer.d_x"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.layer.tanh_layer.TanhLayer.d_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>对x的偏导
+<span class="math">\(\frac{\partial y}{\partial x} = 1-y^2\)</span></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nntool.layer.tanh_layer.TanhLayer.forward">
+<code class="descname">forward</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nntool/layer/tanh_layer.html#TanhLayer.forward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nntool.layer.tanh_layer.TanhLayer.forward" title="Permalink to this definition">¶</a></dt>
+<dd><p>计算模型的正向计算结果
+<span class="math">\(\tanh(x)=\frac {1-e^{-2x}} {1+e^{-2x}}\)</span></p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
-<div class="section" id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-nntool.layer">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-nntool.layer" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -76,12 +263,12 @@
   <ul>
 <li><a class="reference internal" href="#">nntool.layer package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#nntool-layer-embedding-layer-module">nntool.layer.embedding_layer module</a></li>
-<li><a class="reference internal" href="#nntool-layer-linear-layer-module">nntool.layer.linear_layer module</a></li>
-<li><a class="reference internal" href="#nntool-layer-sigmoid-layer-module">nntool.layer.sigmoid_layer module</a></li>
-<li><a class="reference internal" href="#nntool-layer-softmax-layer-module">nntool.layer.softmax_layer module</a></li>
-<li><a class="reference internal" href="#nntool-layer-tanh-layer-module">nntool.layer.tanh_layer module</a></li>
-<li><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li><a class="reference internal" href="#module-nntool.layer.embedding_layer">nntool.layer.embedding_layer module</a></li>
+<li><a class="reference internal" href="#module-nntool.layer.linear_layer">nntool.layer.linear_layer module</a></li>
+<li><a class="reference internal" href="#module-nntool.layer.sigmoid_layer">nntool.layer.sigmoid_layer module</a></li>
+<li><a class="reference internal" href="#module-nntool.layer.softmax_layer">nntool.layer.softmax_layer module</a></li>
+<li><a class="reference internal" href="#module-nntool.layer.tanh_layer">nntool.layer.tanh_layer module</a></li>
+<li><a class="reference internal" href="#module-nntool.layer">Module contents</a></li>
 </ul>
 </li>
 </ul>
