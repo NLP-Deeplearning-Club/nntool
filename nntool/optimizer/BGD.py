@@ -41,19 +41,34 @@ class BGDRuner:
         """训练启动"""
         self.layers = model._layers
         self.layers_len = len(self.layers)
+        if self.epoch:
+            for i in range(self.epoch):
+                print("epoch {i}==============".format(i=i))
+                batch = random.sample(list(zip(self.X,self.Y)),self.batch_size)
+                for (x,y) in batch:
+                    result = self.objective(self.forward(x),y)
+                    self.backward(y,self.eta)
+                print("loss:{i}".format(i = result))
+                print("epoch {i} end==============".format(i=i))
+        else:
+            last1 = -2
+            last2 = -1
+            i = 0
+            while abs(last1-last2) > 0.0001 :
+                print("epoch {i}==============".format(i=i))
+                batch = random.sample(list(zip(self.X,self.Y)),self.batch_size)
+                for (x,y) in batch:
+                    result = self.objective(self.forward(x),y)
+                    self.backward(y,self.eta)
+                print("loss:{i}".format(i = result))
+                print("epoch {i} end==============".format(i=i))
+                last2 = last1
+                last1 = result
+                i+=1
 
-        for i in range(self.epoch):
-            print("epoch {i}==============".format(i=i))
-            batch = random.sample(list(zip(self.X,self.Y)),self.batch_size)
-            for (x,y) in batch:
-                result = self.objective(self.forward(x),y)
-                self.backward(y,self.eta)
-            print("loss:{i}".format(i = result))
-            print("epoch {i} end==============".format(i=i))
 
 
-
-    def __init__(self,X,Y,objective,batch_size,eta=0.1,epoch = 10):
+    def __init__(self,X,Y,objective,batch_size,eta=0.1,epoch = False):
         self.X = X
         self.Y = Y
         self.objective = objective

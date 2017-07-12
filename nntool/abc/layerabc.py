@@ -15,7 +15,7 @@ class LayerABC(ABC):
         """计算本层正向输出,"""
     @abstractmethod
     def backward(self, x):
-        """计算本层输出"""
+        """计算本层反向输出"""
         pass
 
 
@@ -29,7 +29,7 @@ class HiddenLayer(LayerABC):
 
 
 class NeuronLayer(HiddenLayer):
-    """神经元层,表示本层都是神经元,
+    """神经元层,表示本层都是神经元,一般都是线性神经元的衍生
     输入的每一个纬度都会进入层内的每个神经元进行计算,神经元一般都有参数,而训练这些参数也就是我们的任务"""
     _neurons = None
     djdThetas = None
