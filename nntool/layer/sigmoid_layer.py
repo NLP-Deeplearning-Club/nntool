@@ -15,14 +15,17 @@ class SigmoidLayer(ActivationFunctionLayer):
         :math:`\\sigma(x)=\\frac 1 {1+e^{-x}}`
         """
         self.x = x
-        self.input_size = len(self.x)
+        self._size = len(self.x)
 
         self.y = 1/(1+np.exp(-self.x))
         return self.y
-
+    @property
+    def size(self):
+        return self._size
 
 
     def backward(self,djdys,eta):
+
         self.djdys = djdys
         self.djdxs = self.d_x()
         return self.djdxs,eta
@@ -32,5 +35,5 @@ class SigmoidLayer(ActivationFunctionLayer):
         """对x的偏导
         :math:`\\frac{\\partial y}{\\partial x} = y(1-y)`
         """
-        djdx = self.djdys*(self.y(1-self.y))
+        djdx = self.djdys*(self.y*(1-self.y))
         return djdx

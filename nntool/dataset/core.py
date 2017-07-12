@@ -56,7 +56,7 @@ class DataLoader:
 
     def _load_names(self):
         with open(self.namespath) as f:
-            names = [i for i in f][:-1]
+            names = [i.strip().rstrip() for i in f][:-1]
         return names
 
     def _load_datas(self):
@@ -65,7 +65,10 @@ class DataLoader:
         for line in temp:
             line_word = line.strip().lstrip().split(",")
             y_ = line_word[-1]
-            x = [float(i) for i in line_word[:-1]]
+            try:
+                x = [float(i) for i in line_word[:-1]]
+            except:
+                x = [i for i in line_word[:-1]]
             X.append(x)
             y.append(y_)
         X = np.array(X)

@@ -5,7 +5,6 @@ class BGDRuner:
 
     def forward(self,x,i=0):
         """前向运算"""
-        #print("forward {i} layer".format(i=i))
         if i == self.layers_len:
             #print('result:{re}'.format(re=x))
             return x
@@ -17,8 +16,6 @@ class BGDRuner:
 
     def backward(self,y,eta,i = None):
         """反向运算"""
-        #print("i")
-        #print(i)
         if i is not None:
             #print("backward {i} layer".format(i=i))
             if i == 0:
@@ -48,19 +45,19 @@ class BGDRuner:
                 for (x,y) in batch:
                     result = self.objective(self.forward(x),y)
                     self.backward(y,self.eta)
-                print("loss:{i}".format(i = result))
+                print("loss:{i}".format(i = result[0][0]))
                 print("epoch {i} end==============".format(i=i))
         else:
             last1 = -2
             last2 = -1
             i = 0
-            while abs(last1-last2) > 0.0001 :
+            while abs(last1-last2) > self.precision :
                 print("epoch {i}==============".format(i=i))
                 batch = random.sample(list(zip(self.X,self.Y)),self.batch_size)
                 for (x,y) in batch:
                     result = self.objective(self.forward(x),y)
                     self.backward(y,self.eta)
-                print("loss:{i}".format(i = result))
+                print("loss:{i}".format(i = result[0][0]))
                 print("epoch {i} end==============".format(i=i))
                 last2 = last1
                 last1 = result
@@ -68,10 +65,11 @@ class BGDRuner:
 
 
 
-    def __init__(self,X,Y,objective,batch_size,eta=0.1,epoch = False):
+    def __init__(self,X,Y,objective,*,batch_size,eta=0.1,epoch = False,precision=0.0001):
         self.X = X
         self.Y = Y
         self.objective = objective
         self.batch_size = batch_size
         self.eta = eta
         self.epoch = epoch
+        self.precision = precision

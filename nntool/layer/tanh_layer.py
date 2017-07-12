@@ -8,7 +8,7 @@ class TanhLayer(ActivationFunctionLayer):
         """计算模型的正向计算结果
         :math:`\\tanh(x)=\\frac {1-e^{-2x}} {1+e^{-2x}}`"""
         self.x = x
-        self.input_size = len(self.x)
+        self._size = len(self.x)
 
         self.y = np.tanh(x)
         return self.y
@@ -20,6 +20,9 @@ class TanhLayer(ActivationFunctionLayer):
 
         return self.djdxs,eta
 
+    @property
+    def size(self):
+        return self._size
 
     def d_x(self):
         """对x的偏导
